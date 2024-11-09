@@ -1,7 +1,22 @@
   
+/* CSS for navbar */
 h1 {
     color: #ff6230;
+    font-size: 48px;
     text-align: center;
+    font-family: "bello-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.circle-logo {
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 50%;  
+    height: 50%; 
+    text-decoration: none;
+    display: block; 
+    margin: 0 auto;
 }
 
 body {
@@ -9,12 +24,8 @@ body {
    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.navbar {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   background-color: #f8bcca;
-   padding: 30px 20px;
+p {
+    margin: 0 80px;
 }
 
 .navbar {
@@ -22,7 +33,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #fcc598;
-    padding: 30px 20px;
+    padding: 20px;
  }
  
 .logo-container {
@@ -47,7 +58,11 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    font-size: 36px;
     margin-left: auto;
+    font-family: "bello-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
  
 .nav-links li {
@@ -67,7 +82,6 @@ body {
 }
 
 .login-button {
-    width: 10%;
     background-color: #d10101;
     color: rgb(0, 0, 0);
     border: none;
@@ -78,16 +92,22 @@ body {
     transition: transform 0.3s ease; 
     margin-right: 10px;
     white-space: nowrap; 
+    font-family: "bello-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
  
 .login-button:hover {
-    background-color: #a10000;
+    background-color: #fcc598;
+    border: 2px solid #d10101;
     transform: scale(1.05); 
- 
 }
 
 .signin-button {
-    width: 10%;
     background-color: #d10101;
     color: rgb(0, 0, 0);
     border: none;
@@ -98,10 +118,76 @@ body {
     transition: transform 0.3s ease; 
     margin-right: 10px;
     white-space: nowrap; 
+    font-family: "bello-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
 }
  
 .signin-button:hover {
-    background-color: #a10000;
+    background-color: #fcc598;
+    border: 2px solid #d10101;
     transform: scale(1.05); 
+}
+
+.description {
+   text-align: center;
+ }
+
+/* CSS for About */
+
+h2 {
+    font-size: 30px;
+    font-family: "bello-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;   
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+ }
  
+.contributor-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+ 
+.contributor-box img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+ 
+.contributor-info {
+    padding: 15px;
+}
+ 
+.contributor-info h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-family: "bello-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;   
+    
+}
+ 
+.contributor-info p {
+    color: #666;
+    font-size: 0.9em;
+}
+ 
+.contributor-box:hover {
+    transform: scale(1.05);
 }
