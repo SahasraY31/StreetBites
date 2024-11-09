@@ -1,0 +1,107 @@
+  
+h1 {
+    color: #ff6230;
+    text-align: center;
+}
+
+body {
+   margin: 0;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #f8bcca;
+   padding: 30px 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fcc598;
+    padding: 30px 20px;
+ }
+ 
+.logo-container {
+    width: 100%;  
+    height: 200px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.logo {
+    background-image: url('/designs/streetbites_logo.PNG');
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 100%;  
+    height: 100%; 
+    text-decoration: none;
+}
+ 
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-left: auto;
+}
+ 
+.nav-links li {
+    margin: 0 20px;
+}
+ 
+.nav-links a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 18px;
+    white-space: nowrap; 
+}
+ 
+ 
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 10%;
+    background-color: #d10101;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: transform 0.3s ease; 
+    margin-right: 10px;
+    white-space: nowrap; 
+}
+ 
+.login-button:hover {
+    background-color: #a10000;
+    transform: scale(1.05); 
+ 
+}
+
+.signin-button {
+    width: 10%;
+    background-color: #d10101;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: transform 0.3s ease; 
+    margin-right: 10px;
+    white-space: nowrap; 
+}
+ 
+.signin-button:hover {
+    background-color: #a10000;
+    transform: scale(1.05); 
+ 
+}
