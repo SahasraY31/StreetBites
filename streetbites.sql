@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2024 at 12:55 AM
+-- Generation Time: Nov 10, 2024 at 01:27 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `foodtruckinfo` (
   `name` varchar(100) NOT NULL,
   `tags` text DEFAULT NULL,
   `des` text DEFAULT NULL,
-  `logo` varchar(255) DEFAULT NULL,
+  `logo` blob DEFAULT NULL,
   `hours` varchar(255) DEFAULT NULL,
   `longitude` decimal(10,8) DEFAULT NULL,
   `latitude` decimal(11,8) DEFAULT NULL
