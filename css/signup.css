@@ -1,0 +1,137 @@
+/* General Page Styling */
+body {
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
+   background: #fee5d0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   margin: 0;
+}
+
+.circle-logo {
+   padding: 0;
+   background-size: contain;
+   background-repeat: no-repeat;
+   width: 150px;   
+   height: 150px;  
+   text-decoration: none;
+   position: absolute;
+   top: 10px;   
+   left: 10px;   
+   margin: 0;
+}
+
+
+h1 {
+   color: #ff6230;
+   font-size: 48px;
+   text-align: center;
+   font-family: "bello-pro", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+}
+
+.form-container {
+   background-color: #ffffff;
+   width: 100%;
+   max-width: 600px;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+   text-align: center;
+   margin: auto;
+}
+
+.form-container h2 {
+   text-align: center;
+   font-size: 24px;
+   margin-bottom: 15px;
+}
+
+/* Labels and Inputs */
+.form-container label {
+   font-size: 14px;
+   margin-top: 10px;
+   display: inline-block;
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+   width: 100%;
+   padding: 10px;
+   margin-top: 5px;
+   border: 1px solid #ddd;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+
+.form-container input[type="checkbox"] {
+   width: auto;
+   margin-right: 5px;
+}
+
+.form-container select {
+   background-color: #fafafa;
+   font-size: 14px;
+}
+
+.form-container button {
+   font-family: "bello-pro", sans-serif;
+   font-style: normal;
+   width: 100%;
+   padding: 12px;
+   background-color: #ff6b6b;
+   border: none;
+   color: white;
+   font-size: 1em;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+   background-color: #ff4a4a;
+}
+
+/* Success and Error Messages */
+.success {
+   color: green;
+   font-size: 14px;
+   text-align: center;
+   margin-top: 10px;
+}
+
+.error {
+   color: red;
+   font-size: 14px;
+   text-align: center;
+   margin-top: 10px;
+}
+
+/* Admin-Specific Fields */
+.admin-fields {
+   display: none; /* Hidden by default, shown via JavaScript */
+   margin-top: 15px;
+   border-top: 1px solid #ddd;
+   padding-top: 15px;
+}
+
+.admin-fields h3 {
+   font-size: 18px;
+   margin-bottom: 10px;
+   color: #333;
+}
+
+/* Responsive Styling */
+@media (max-width: 400px) {
+   .form-container {
+       width: 90%;
+       padding: 15px;
+   }
+
+   .form-container h2 {
+       font-size: 20px;
+   }
+}

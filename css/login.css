@@ -4,6 +4,11 @@
 
 body {
     background: #fee5d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;       
+    margin: 0;         
 }
 
 h1 {
@@ -16,18 +21,19 @@ h1 {
 }
 
 .circle-logo {
-    padding: 20px;
-    background-size: contain; 
-    background-repeat: no-repeat; 
-    width: 20%;  
-    height: 20%; 
+    padding: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 150px;   
+    height: 150px;  
     text-decoration: none;
-    display: block; 
-    margin: 0 auto;
+    position: absolute;
+    top: 10px;   
+    left: 10px;   
+    margin: 0;
 }
- 
- /* Login container */
- .login-container {
+
+.login-container {
     background-color: #ffffff;
     width: 100%;
     max-width: 600px;
@@ -35,8 +41,7 @@ h1 {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin: auto;
- }
+}
  
  /* Header styling */
  header h1 {
@@ -60,7 +65,7 @@ h1 {
  .form-main input[type="submit"] {
     font-family: "bello-pro", sans-serif;
     font-style: normal;
-    width: 100%;
+    width: 92%;
     padding: 12px;
     background-color: #ff6b6b;
     border: none;

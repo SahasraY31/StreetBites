@@ -116,7 +116,6 @@ $conn->close();
 
       <form action="#" method="POST">
          <h1>Welcome Back</h1>
-
          <div class="form-main">
             <input type="email" id="email" name="email" placeholder="Email" /><br /><br />
 

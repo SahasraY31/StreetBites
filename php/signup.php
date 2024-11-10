@@ -57,11 +57,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign Up</title>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://use.typekit.net/fxn5znb.css">
+        <link rel="stylesheet" href="../css/signup.css">
+        <title>Sign Up</title>
+    </head>
 <style>
     body { font-family: Arial, sans-serif; }
     .form-container { width: 300px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
@@ -85,8 +88,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </script>
 </head>
 <body>
+    <a href="../index.html">
+        <img src="../designs/streetbites_circle_logo.png" alt="streetbites Logo" class ="circle-logo" />
+    </a>
     <div class="form-container">
-        <h2>Sign Up</h2>
+        <h1>Sign Up</h1>
         <?php if ($error): ?>
             <p class="error"><?= $error ?></p>
         <?php endif; ?>
