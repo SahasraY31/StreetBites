@@ -16,7 +16,7 @@
     include ("./includes/conn.php");
 
     // Query to fetch food truck data
-    $sql = "SELECT name, latitude AS lat, longitude AS lng, info FROM food_trucks";
+    $sql = "SELECT id, name, tags, des, logo, hours, latitude AS lat, longitude AS lng FROM foodtruckinfo";
     $result = $conn->query($sql);
 
     // Initialize an array to store food truck data
@@ -46,7 +46,7 @@
 
         // Custom local icon for food trucks
         const foodTruckIcon = L.icon({
-            iconUrl: 'designs/streetbites_circle_logo.PNG', // Local file path
+            iconUrl: '../designs/streetbites_circle_logo.PNG', // Local file path
             iconSize: [50, 50], // Adjust size
             iconAnchor: [20, 40], // Position properly
             popupAnchor: [0, -35] // Offset for pop-up
@@ -58,7 +58,7 @@
         // Add food truck markers with the custom local icon
         foodTrucks.forEach((truck) => {
             const marker = L.marker([truck.lat, truck.lng], { icon: foodTruckIcon }).addTo(map);
-            marker.bindPopup(`<b>${truck.name}</b><br>${truck.info}`);
+            marker.bindPopup(`<b>${truck.name}</b><br>${truck.des}`);
         });
 
         // Optional: User Geolocation
