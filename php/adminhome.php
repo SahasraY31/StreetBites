@@ -99,7 +99,7 @@ include ("./includes/conn.php");
     <h3>Manage Your Food Truck Location</h3>
     
     <div class="update-form">
-        <h4>Update <?php echo htmlspecialchars($_SESSION['admin_truck_name']); ?>'s Location</h4>
+        <h4>Update <?php echo htmlspecialchars($_SESSION['foodtruck_name']); ?>'s Location</h4>
         <input type="text" id="newAddress" placeholder="Enter new address (e.g., 123 Main St, New York, NY)">
         <button onclick="updateLocation()">Update Location</button>
         <div id="updateStatus"></div>
@@ -147,7 +147,7 @@ include ("./includes/conn.php");
 
         // PHP-generated JavaScript array of food trucks
         const foodTrucks = <?php echo json_encode($foodTrucks); ?>;
-        const adminTruckName = <?php echo json_encode($_SESSION['admin_truck_name']); ?>;
+        const foodTruckname = <?php echo json_encode($_SESSION['foodtruck_name']); ?>;
         let adminMarker = null;
         let markers = new Map(); // Store all markers for easy access
 
@@ -170,7 +170,7 @@ include ("./includes/conn.php");
             const marker = L.marker([truck.lat, truck.lng], { icon: foodTruckIcon }).addTo(map);
             markers.set(truck.name, marker); // Store marker reference
             
-            if (truck.name === adminTruckName) {
+            if (truck.name === foodTruckname) {
                 adminMarker = marker;
                 // Center map on admin's truck initially
                 map.setView([truck.lat, truck.lng], 15);
@@ -214,7 +214,7 @@ include ("./includes/conn.php");
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                truckName: adminTruckName,
+                                truckName: foodTruckname,
                                 latitude: lat,
                                 longitude: lon
                             })
@@ -232,7 +232,7 @@ include ("./includes/conn.php");
                                     
                                     // Update popup with new address
                                     fetchAddress(lat, lon, (address) => {
-                                        const truck = foodTrucks.find(t => t.name === adminTruckName);
+                                        const truck = foodTrucks.find(t => t.name === foodTruckname);
                                         adminMarker.bindPopup(`
                                             <b>${truck.name}</b><br>
                                             ${truck.des}<br>
@@ -283,11 +283,10 @@ include ("./includes/conn.php");
 
 <!-- File 2: update_location.php -->
 <?php
-session_start();
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
 // Check if admin is logged in
-if (!isset($_SESSION['admin_truck_name'])) {
+if (!isset($_SESSION['foodtruck_name'])) {
     echo json_encode(['success' => false, 'message' => 'Not authenticated']);
     exit();
 }
@@ -308,7 +307,7 @@ if (!is_numeric($data['latitude']) || !is_numeric($data['longitude'])) {
 }
 
 // Verify that the truck name matches the session
-if ($data['truckName'] !== $_SESSION['admin_truck_name']) {
+if ($data['truckName'] !== $_SESSION['foodtruck_name']) {
     echo json_encode(['success' => false, 'message' => 'Unauthorized']);
     exit();
 }
