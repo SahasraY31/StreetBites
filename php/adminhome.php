@@ -2,7 +2,7 @@
 <?php
 session_start();
 // Check if admin is logged in and has associated food truck
-if (!isset($_SESSION['admin_truck_name'])) {
+if (!isset($_SESSION['foodtruck_name'])) {
     header("Location: login.php");
     exit();
 }
