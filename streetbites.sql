@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2024 at 12:15 AM
+-- Generation Time: Nov 10, 2024 at 12:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,10 +32,10 @@ CREATE TABLE `foodtruckinfo` (
   `name` varchar(100) NOT NULL,
   `tags` text DEFAULT NULL,
   `des` text DEFAULT NULL,
-  `current_location` varchar(255) NOT NULL,
   `logo` varchar(255) DEFAULT NULL,
   `hours` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `longitude` decimal(10,8) DEFAULT NULL,
+  `latitude` decimal(11,8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
