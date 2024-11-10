@@ -25,9 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $havePost = true;
 
     $email = htmlspecialchars(trim($_POST["email"]));
-    echo $email;
     $password = htmlspecialchars(trim($_POST["password"]));
-    echo $password;
 
     // Validation
     if (empty($email)) {
@@ -52,20 +50,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            
             $_SESSION['id'] = $user['id'];
             $_SESSION['name'] = $user['name'];
-            $_SESSION['foodtruck_name'] = $user['foodtruck_name'];
-            $_SESSION['isadmin'] = $user['isadmin'];
-
-            if ($_SESSION['isadmin'] == 1) {
+            if($_SESSION['isadmin']==0){
+                $_SESSION['foodtruck_name'] = NULL;
+                header("Location: map.php");
+                exit();
+            }
+            else if ($_SESSION['isadmin'] == 1) {
                 // Fetch food truck information
                 $stmt = $conn->prepare("SELECT * FROM foodtruckinfo WHERE foodtruck_name = ?");
                 $stmt->bind_param("s", $_SESSION['foodtruck_name']);
                 $stmt->execute();
                 $result = $stmt->get_result();
-
-            } else {
-                header("Location: map.php");
+                header("Location: adminhome.php");
                 exit();
-            }
+            } 
             }
         } else {
             $errors .= '<li>Invalid credentials. Please try again.</li>';
