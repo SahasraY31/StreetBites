@@ -94,7 +94,7 @@ $conn->close();
    <title>InSync - Log In</title>
 
    <!-- Link to an external CSS file -->
-   <link rel="stylesheet" href="./designs/styles.css" />
+   <link rel="stylesheet" href="resources/auth.css" />
 </head>
 
 <body>
