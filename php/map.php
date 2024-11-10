@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    <h1>Find Food Trucks in NYC</h1>
+    <h1 class="title">Find Food Trucks in NYC</h1>
     <div id="map"></div>
 
     <?php
@@ -120,5 +120,6 @@
             L.marker(e.latlng).addTo(map).bindPopup("You are here").openPopup();
         });
     </script>
+    <p> <a href="logout.php"> Logout</p>
 </body>
 </html>
