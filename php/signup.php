@@ -1,6 +1,18 @@
 <?php
 // Database configuration
 include 'includes/conn.php';
+session_start();
+
+// Check if the user is already logged in
+if (isset($_SESSION['id'])) {
+    if ($_SESSION['isadmin'] == 0) {
+        header("Location: home.php");
+        exit();
+    } else {
+        header("Location: adminhome.php");
+        exit();
+    }
+}
 
 // GeoCode API Key
 $apiKey = '6730042c165a6904393345twyf9dd61';  // Your new API key
