@@ -9,7 +9,6 @@ h1 {
 }
 
 .circle-logo {
-    background-image: url('../designs/streetbites_circle_logo.png');
     padding: 20px;
     background-size: contain; 
     background-repeat: no-repeat; 
