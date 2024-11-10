@@ -1,4 +1,3 @@
-<!-- File 1: adminhome.php -->
 <?php
 session_start();
 // Check if admin is logged in and has associated food truck
@@ -187,81 +186,90 @@ include ("./includes/conn.php");
         });
 
         function updateLocation() {
-            const address = document.getElementById('newAddress').value;
-            const statusDiv = document.getElementById('updateStatus');
-            
-            if (!address.trim()) {
-                statusDiv.className = 'error';
-                statusDiv.innerHTML = 'Please enter an address';
-                return;
-            }
+    const address = document.getElementById('newAddress').value;
+    const statusDiv = document.getElementById('updateStatus');
+    let lat, lon; // Declare variables in wider scope
+    
+    if (!address.trim()) {
+        statusDiv.className = 'error';
+        statusDiv.innerHTML = 'Please enter an address';
+        return;
+    }
 
-            statusDiv.className = 'processing';
-            statusDiv.innerHTML = 'Processing...';
+    statusDiv.className = 'processing';
+    statusDiv.innerHTML = 'Processing...';
 
-            // First, geocode the address to get coordinates
-            fetch(`https://geocode.maps.co/search?q=${encodeURIComponent(address)}&api_key=6730042c165a6904393345twyf9dd61`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data[0]) {
-                        const lat = data[0].lat;
-                        const lon = data[0].lon;
+    console.log('Starting geocoding for address:', address);
 
-                        // Now update the database with new coordinates
-                        fetch('update_location.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                truckName: foodTruckname,
-                                latitude: lat,
-                                longitude: lon
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(result => {
-                            if (result.success) {
-                                statusDiv.className = 'success';
-                                statusDiv.innerHTML = 'Location updated successfully!';
-                                
-                                // Update marker position
-                                if (adminMarker) {
-                                    adminMarker.setLatLng([lat, lon]);
-                                    map.setView([lat, lon], 15);
-                                    
-                                    // Update popup with new address
-                                    fetchAddress(lat, lon, (address) => {
-                                        const truck = foodTrucks.find(t => t.name === foodTruckname);
-                                        adminMarker.bindPopup(`
-                                            <b>${truck.name}</b><br>
-                                            ${truck.des}<br>
-                                            Cuisines: ${truck.tags}<br>
-                                            Address: ${address}
-                                        `);
-                                    });
-                                }
-                            } else {
-                                statusDiv.className = 'error';
-                                statusDiv.innerHTML = 'Error updating location: ' + result.message;
-                            }
-                        })
-                        .catch(error => {
-                            statusDiv.className = 'error';
-                            statusDiv.innerHTML = 'Error updating location in database';
-                            console.error('Error:', error);
-                        });
-                    } else {
-                        statusDiv.className = 'error';
-                        statusDiv.innerHTML = 'Could not find coordinates for this address';
-                    }
-                })
-                .catch(error => {
-                    statusDiv.className = 'error';
-                    statusDiv.innerHTML = 'Error geocoding address';
-                    console.error('Error:', error);
+    // First, geocode the address to get coordinates
+    fetch(`https://geocode.maps.co/search?q=${encodeURIComponent(address)}&api_key=6730042c165a6904393345twyf9dd61`)
+        .then(response => {
+            console.log('Geocoding response status:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Geocoding data:', data);
+            if (data && data[0]) {
+                lat = parseFloat(data[0].lat); // Assign to outer scope variables
+                lon = parseFloat(data[0].lon);
+                console.log('Coordinates found:', { lat, lon });
+
+                // Now update the database with new coordinates
+                const updateData = {
+                    truckName: foodTruckname,
+                    latitude: lat,
+                    longitude: lon
+                };
+                console.log('Sending update request with data:', updateData);
+
+                return fetch('update.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updateData)
                 });
-        }
+            } else {
+                throw new Error('No coordinates found for this address');
+            }
+        })
+        .then(response => {
+            console.log('Update response status:', response.status);
+            return response.json();
+        })
+        .then(result => {
+            console.log('Update result:', result);
+            if (result.success) {
+                statusDiv.className = 'success';
+                statusDiv.innerHTML = 'Location updated successfully!';
+                
+                // Update marker position - now lat and lon are accessible here
+                if (adminMarker) {
+                    adminMarker.setLatLng([lat, lon]);
+                    map.setView([lat, lon], 15);
+                    
+                    // Update popup with new address
+                    fetchAddress(lat, lon, (address) => {
+                        const truck = foodTrucks.find(t => t.name === foodTruckname);
+                        adminMarker.bindPopup(`
+                            <b>${truck.name}</b><br>
+                            ${truck.des}<br>
+                            Cuisines: ${truck.tags}<br>
+                            Address: ${address}
+                        `).openPopup();
+                    });
+                }
+            } else {
+                statusDiv.className = 'error';
+                statusDiv.innerHTML = 'Error updating location: ' + result.message;
+            }
+        })
+        .catch(error => {
+            console.error('Error in update process:', error);
+            statusDiv.className = 'error';
+            statusDiv.innerHTML = 'Error: ' + error.message;
+        });
+}
 
         // Optional: User Geolocation
         map.locate({ setView: false, maxZoom: 16 });
@@ -280,50 +288,3 @@ include ("./includes/conn.php");
     </script>
 </body>
 </html>
-
-<!-- File 2: update_location.php -->
-<?php
-//header('Content-Type: application/json');
-
-// Check if admin is logged in
-if (!isset($_SESSION['foodtruck_name'])) {
-    echo json_encode(['success' => false, 'message' => 'Not authenticated']);
-    exit();
-}
-
-// Get POST data
-$data = json_decode(file_get_contents('php://input'), true);
-
-// Validate input data
-if (!isset($data['truckName']) || !isset($data['latitude']) || !isset($data['longitude'])) {
-    echo json_encode(['success' => false, 'message' => 'Missing required data']);
-    exit();
-}
-
-// Validate coordinates
-if (!is_numeric($data['latitude']) || !is_numeric($data['longitude'])) {
-    echo json_encode(['success' => false, 'message' => 'Invalid coordinates']);
-    exit();
-}
-
-// Verify that the truck name matches the session
-if ($data['truckName'] !== $_SESSION['foodtruck_name']) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-    exit();
-}
-
-include ("./includes/conn.php");
-
-// Update the location in the database
-$stmt = $conn->prepare("UPDATE foodtruckinfo SET latitude = ?, longitude = ? WHERE name = ?");
-$stmt->bind_param("dds", $data['latitude'], $data['longitude'], $data['truckName']);
-
-if ($stmt->execute()) {
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Database error: ' . $conn->error]);
-}
-
-$stmt->close();
-$conn->close();
-?>
