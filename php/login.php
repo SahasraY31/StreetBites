@@ -47,17 +47,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
                 echo "<div class='messages'><h4>Login successful! Redirecting...</h4></div>";
-           
+                echo $user['isadmin'];
             $_SESSION['id'] = $user['id'];
             $_SESSION['name'] = $user['name'];
+            $_SESSION['isadmin'] = $user['isadmin'];
+            $_SESSION['foodtruck_name'] = $user['foodtruck_name'];
+            
             if($_SESSION['isadmin']==0){
                 $_SESSION['foodtruck_name'] = NULL;
+                echo "<div class='messages'><h4>Admin = 0...</h4></div>";
                 header("Location: map.php");
                 exit();
             }
             else if ($_SESSION['isadmin'] == 1) {
                 // Fetch food truck information
-                $stmt = $conn->prepare("SELECT * FROM foodtruckinfo WHERE foodtruck_name = ?");
+                $stmt = $conn->prepare("SELECT * FROM foodtruckinfo WHERE name = ?");
                 $stmt->bind_param("s", $_SESSION['foodtruck_name']);
                 $stmt->execute();
                 $result = $stmt->get_result();
