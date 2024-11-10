@@ -3,12 +3,32 @@
 <head>
     <title>NYC Food Truck Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/fxn5znb.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
-        #map { height: 500px; width: 100%; }
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Map styling */
+        #map {
+            height: 500px;
+            width: 80%;          
+            min-width: 600px;    
+            max-width: 1000px;   
+            border-radius: 10px;  
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+        }
     </style>
 </head>
 <body>
-    <h3>Find Food Trucks in NYC</h3>
+    <h1>Find Food Trucks in NYC</h1>
     <div id="map"></div>
 
     <?php
