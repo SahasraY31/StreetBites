@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             else if ($_SESSION['isadmin'] == 1) {
                 // Fetch food truck information
-                $stmt = $conn->prepare("SELECT * FROM foodtruckinfo WHERE foodtruck_name = ?");
+                $stmt = $conn->prepare("SELECT * FROM foodtruckinfo WHERE name = ?");
                 $stmt->bind_param("s", $_SESSION['foodtruck_name']);
                 $stmt->execute();
                 $result = $stmt->get_result();
