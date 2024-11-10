@@ -1,0 +1,116 @@
+/* CSS for the login.php */
+
+/* Circle logo */
+
+body {
+    background: #fee5d0;
+}
+
+h1 {
+    color: #ff6230;
+    font-size: 48px;
+    text-align: center;
+    font-family: "bello-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.circle-logo {
+    padding: 20px;
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 20%;  
+    height: 20%; 
+    text-decoration: none;
+    display: block; 
+    margin: 0 auto;
+}
+ 
+ /* Login container */
+ .login-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: auto;
+ }
+ 
+ /* Header styling */
+ header h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+ }
+
+ 
+ .form-main input[type="email"],
+ .form-main input[type="password"] {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+ }
+ 
+ /* Submit button */
+ .form-main input[type="submit"] {
+    font-family: "bello-pro", sans-serif;
+    font-style: normal;
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6b6b;
+    border: none;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+ }
+ 
+ .form-main input[type="submit"]:hover {
+    background-color: #ff4a4a;
+ }
+ 
+ /* Link to sign up */
+ #notyet {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 15px;
+    font-size: 0.9em;
+ }
+ 
+ #notyet a {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #ff6b6b;
+    text-decoration: none;
+ }
+ 
+ #notyet a:hover {
+    text-decoration: underline;
+ }
+ 
+ /* Error messages */
+ .messages {
+    background-color: #ffe6e6;
+    border: 1px solid #ff4a4a;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+ }
+ 
+ .messages h4 {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #ff4a4a;
+    margin-bottom: 5px;
+ }
+ 
+ .messages ul {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    list-style: none;
+    color: #ff4a4a;
+    font-size: 0.9em;
+    padding-left: 20px;
+ }
