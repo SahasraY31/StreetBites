@@ -14,6 +14,8 @@ include ("./includes/conn.php");
 <head>
     <title>NYC Food Truck Map - Admin</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/fxn5znb.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -96,13 +98,14 @@ include ("./includes/conn.php");
     </style>
 </head>
 <body>
+    
     <div class="main-container">
         <nav class="navbar">
             <div class="logo-container">
-                <a href="index.html" class="logo"></a>
+                <a href="../index.html" class="logo"></a>
             </div>
-            <a href="./php/login.php" class="login-button">Log in</a>
-            <a href="./php/signup.php" class="signin-button">Sign up</a>
+            <a href="./login.php" class="login-button">Log in</a>
+            <a href="./signup.php" class="signin-button">Sign up</a>
             <a href="logout.php" class="login-button">Log Out</a>
         </nav>  
 
