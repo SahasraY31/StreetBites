@@ -47,7 +47,7 @@ p {
 }
 
 .logo {
-    background-image: url('../designs/streetbites_logo.PNG');
+    background-image: url('../designs/streetbites_circle_logo.png');
     background-size: contain; 
     background-repeat: no-repeat;
     width: 150px;  /* Fixed width for the logo */
