@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         $success = "User registration successful!";
+        header("Location: login.php");
 
         // If user is admin, insert food truck info into `foodtruckinfo` table
         if ($isadmin) {
