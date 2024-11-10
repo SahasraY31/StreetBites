@@ -9,11 +9,27 @@
         body, html {
             height: 100%;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f9;
+            background: #fee5d0;
             font-family: Arial, sans-serif;
+        }
+
+        /* Container to stack elements vertically */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #fcc598;
+            color: white;
         }
 
         /* Map styling */
@@ -24,12 +40,32 @@
             max-width: 1000px;   
             border-radius: 10px;  
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+            margin-top: 20px;
+        }
+
+        /* Title styling */
+        .title {
+            margin: 20px 0;
+            font-size: 2em;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1 class="title">Find Food Trucks in NYC</h1>
-    <div id="map"></div>
+    <!-- Main container to align elements vertically -->
+    <div class="main-container">
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="../index.html" class="logo"></a>
+            </div>
+            <a href="./login.php" class="login-button">Log in</a>
+            <a href="./signup.php" class="signin-button">Sign up</a>
+            <a href="logout.php" class="login-button">Log Out</a>
+        </nav>  
+
+        <h1 class="title">Find Food Trucks in NYC</h1>
+        <div id="map"></div>
+    </div>
 
     <?php
     session_start();
@@ -105,7 +141,6 @@
                 });
         }
 
-
         // Add food truck markers with the custom local icon
         foodTrucks.forEach((truck) => {
             const marker = L.marker([truck.lat, truck.lng], { icon: foodTruckIcon }).addTo(map);
@@ -120,6 +155,5 @@
             L.marker(e.latlng).addTo(map).bindPopup("You are here").openPopup();
         });
     </script>
-    <p> <a href="logout.php"> Logout</p>
 </body>
 </html>
