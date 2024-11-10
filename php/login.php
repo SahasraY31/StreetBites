@@ -1,5 +1,5 @@
 <?php
-include 'includes/conn.php';
+include '../includes/server.inc.php';
 
 session_start();
 
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If no errors, process login
     if (empty($errors)) {
         $encryptedPassword = sha1($password);
-        $stmt = $conn->prepare("SELECT * FROM userdata WHERE email = ? AND password = ?");
+        $stmt = $conn->prepare("SELECT * FROM customerdata WHERE email = ? AND password = ?");
         $stmt->bind_param("ss", $email, $encryptedPassword);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -50,28 +50,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
             echo "<div class='messages'><h4>Login successful! Redirecting...</h4></div>";
 
-            $_SESSION['id'] = $user['id']; 
-            $_SESSION['name'] = $user['name'];
-            $_SESSION['foodtruck_name'] = $user['foodtruck_name'];
-            $_SESSION['isadmin'] = $user['isadmin'];
-   
+            $_SESSION['user_id'] = $user['id']; 
+            $_SESSION['first_name'] = $user['first_name'];
+            $_SESSION['admin'] = $user['admin'];
+            //echo "Login successful! Redirecting to home...";
             if($_SESSION['admin'] == 1){
-                $stmt = $conn->prepare("SELECT * FROM foodtruckinfo WHERE foodtruck_name = ?");
-                $stmt->bind_param("s", $_SESSION['id']);
+                $stmt = $conn->prepare("SELECT * FROM clubs WHERE userid = ?");
+                $stmt->bind_param("s", $_SESSION['user_id']);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                // if ($result->num_rows > 0){
-                //     $_SESSION['club_filled'] = 1;
-                //     header("Location: ../admin/home.php");
-                //     exit();
-                // } else {
-                //     $_SESSION['club_filled'] = 0;
-                //     header("Location: ../admin/clubInfo.php");
-                //     exit();
-                // }
+                if ($result->num_rows > 0){
+                    $_SESSION['club_filled'] = 1;
+                    header("Location: ../admin/home.php");
+                    exit();
+                } else {
+                    $_SESSION['club_filled'] = 0;
+                    header("Location: ../admin/clubInfo.php");
+                    exit();
+                }
                 
             } else{
-                header("Location: home.php");
+                header("Location: ../student/home.php");
                 exit();
             }
             
@@ -92,14 +91,19 @@ $conn->close();
 <head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>StreetBites - Login</title>
-   <link rel="stylesheet" href="../css/styles.css">
+   <title>InSync - Log In</title>
+
+   <!-- Link to an external CSS file -->
+   <link rel="stylesheet" href="resources/auth.css" />
 </head>
 
 <body>
-        <a href="../index.html">
-            <img src="../designs/streetbites_circle_logo.png" alt="streetbites Logo" class ="circle-logo" />
+    <div class="logo-container">
+        <a href="../../index.html">
+            <img src="../public/logowfont.png" alt="InSync Logo" class="logo-image" />
+            <!-- InSync -->
         </a>
+    </div>
    <div class="login-container">
 
       <header>
@@ -122,7 +126,7 @@ $conn->close();
             <input type="password" id="password" name="password" placeholder="Password" /><br /><br /><br />
 
             <input type="submit" value="Log In" />
-            <p id="notyet"> Don't have an account? <a href="signup.php">Sign up</a></p>
+            <p id="notyet"> Don't have an account? <a href="signUp.php">Sign up</a></p>
          </div>
 
 
