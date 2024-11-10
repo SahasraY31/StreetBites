@@ -32,6 +32,12 @@
     <div id="map"></div>
 
     <?php
+    session_start();
+    // Check if admin is logged in and has associated food truck
+    if (!isset($_SESSION['id'])) {
+        header("Location: login.php");
+        exit();
+    }
     include ("./includes/conn.php");
 
     // Query to fetch food truck data
