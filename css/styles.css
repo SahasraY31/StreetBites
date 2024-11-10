@@ -72,7 +72,7 @@ p {
 .nav-links a {
     color: rgb(0, 0, 0);
     text-decoration: none;
-    font-size: 18px;
+    font-size: 24px;
     white-space: nowrap; 
 }
  
@@ -86,12 +86,12 @@ p {
     color: rgb(0, 0, 0);
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
     cursor: pointer;
     border-radius: 30px;
     transition: transform 0.3s ease; 
     margin-right: 10px;
     white-space: nowrap; 
+    font-size: 24px;
     font-family: "bello-pro", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -112,12 +112,12 @@ p {
     color: rgb(0, 0, 0);
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
     cursor: pointer;
     border-radius: 30px;
     transition: transform 0.3s ease; 
     margin-right: 10px;
     white-space: nowrap; 
+    font-size: 24px;
     font-family: "bello-pro", sans-serif;
     font-weight: 400;
     font-style: normal;
