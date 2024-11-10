@@ -96,6 +96,19 @@ include ("./includes/conn.php");
     </style>
 </head>
 <body>
+    <div class="main-container">
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="index.html" class="logo"></a>
+            </div>
+            <a href="./php/login.php" class="login-button">Log in</a>
+            <a href="./php/signup.php" class="signin-button">Sign up</a>
+            <a href="logout.php" class="login-button">Log Out</a>
+        </nav>  
+
+        <h1 class="title">Find Food Trucks in NYC</h1>
+        <div id="map"></div>
+    </div>
     <h3>Manage Your Food Truck Location</h3>
     
     <div class="update-form">
