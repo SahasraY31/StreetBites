@@ -56,7 +56,7 @@
     <div class="main-container">
         <nav class="navbar">
             <div class="logo-container">
-                <a href="index.html" class="logo"></a>
+                <a href="../index.html" class="logo"></a>
             </div>
             <a href="./php/login.php" class="login-button">Log in</a>
             <a href="./php/signup.php" class="signin-button">Sign up</a>
